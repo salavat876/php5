@@ -1,10 +1,7 @@
-create table userss (
+create table users(
     id serial primary key,
     name varchar(255),
-    last_name varchar(255),
-    email varchar(255),
-    work_id int
-
+    login varchar(255)
 );
 
 create table works(
@@ -17,13 +14,31 @@ create table timings(
     id serial primary key ,
     code varchar(255),
     track int,
-    work_id int
+    work_id int,
+    users_id int
 );
 
-insert into userss (name, last_name,email,work_id) values ('salavat','mavl','example@mail.com',1);
-insert into works (name, status) values ('плотник',true);
-insert into timings(code,track,work_id) values ('fff',1,1);
+alter table users add age int default 0;
 
-select * from timings;
-select * from userss;
-select * from works;
+
+insert into users (name, login,age)
+    values ('tape','dsasda',17);
+
+alter table users
+    add music int default 0;
+
+alter table users
+    drop column music;
+
+select * from users
+    where age> 15;
+
+select name,login  from users
+    where name = 'bob';
+
+update users
+    set age = age + 1;
+
+delete from users
+    where age < 17;
+select * from users;
